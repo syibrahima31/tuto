@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="p-5 mb-4 bg-light rounded-3">
+  <div class="container-fluid d-flex justify-content-between py-5">
+    <h1 class="display-5 fw-bold">Gestion Etudiants </h1>
+    <div><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modaladd">Ajout
+        Etudiant</button></div>
+  </div>
+
+  <!-- TABLE -->
+  <div>
+    <table class="table align-middle mb-0 bg-white">
+      <thead class="bg-light">
+        <tr>
+          <th>ID</th>
+          <th>Nom </th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for element in etudiant %}
+
+
+
+        <tr>
+          <td>
+            <div class="d-flex align-items-center">
+              {{ element.id}}
+            </div>
+          </td>
+          <td>
+            {{ element.nom }}
+
+          </td>
+          <td>
+            {{ element.mail }}
+          </td>
+          <td>
+            <div class="d-flex justify-content-start">
+              <div><button type="button" class="btn btn-info mx-2" data-bs-toggle="modal" data-bs-target="#modaledit{{element.id}}">Edit</button></div>
+              <div><button type="button" class="btn btn-warning px-1">Delete</button></div>
+            </div>
+          </td>
+        </tr>
+
+
+ <!-- Modal Edit -->
+ <div class="modal fade" id="modaledit{{element.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+ aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h1 class="modal-title fs-5" id="staticBackdropLabel">Ajout Etudiant</h1>
+       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+     </div>
+     <div class="modal-body">
+       <form  action="{{url_for('add')}}" method="POST">
+         <!-- ID -->
+         <div class="form-outline mb-4">
+           <input type="text" id="form2Example1" class="form-control" name="id" />
+           <label class="form-label" for="form2Example1">ID</label>
+         </div>
+
+         <!-- Nom  -->
+         <div class="form-outline mb-4">
+           <input type="text" id="form2Example2" class="form-control" name="nom"/>
+           <label class="form-label" for="form2Example2">Nom</label>
+         </div>
+
+          <!-- Mail  -->
+          <div class="form-outline mb-4">
+           <input type="text" id="form2Example3" class="form-control"  name="mail" />
+           <label class="form-label" for="form2Example3">Email</label>
+         </div>
+
+       
+
+         <!-- Submit button -->
+         <button type="submit" class="btn btn-primary btn-block mb-4">Ajouter</button>
+
+
+       </form>
+     </div>
+   </div>
+ </div>
+</div>
+
+        {% endfor %}
+
+        <!-- Mes Modals -->
+        <!-- Button trigger modal -->
+
+        <!-- Modal -->
+
+        <!-- Button trigger modal -->
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="modaladd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Ajout Etudiant</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form  action="{{url_for('add')}}" method="POST">
+                  <!-- ID -->
+                  <div class="form-outline mb-4">
+                    <input type="text" id="form2Example1" class="form-control" name="id" />
+                    <label class="form-label" for="form2Example1">ID</label>
+                  </div>
+
+                  <!-- Nom  -->
+                  <div class="form-outline mb-4">
+                    <input type="text" id="form2Example2" class="form-control" name="nom"/>
+                    <label class="form-label" for="form2Example2">Nom</label>
+                  </div>
+
+                   <!-- Mail  -->
+                   <div class="form-outline mb-4">
+                    <input type="text" id="form2Example3" class="form-control"  name="mail" />
+                    <label class="form-label" for="form2Example3">Email</label>
+                  </div>
+
+                
+
+                  <!-- Submit button -->
+                  <button type="submit" class="btn btn-primary btn-block mb-4">Ajouter</button>
+
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+{% endblock %}
